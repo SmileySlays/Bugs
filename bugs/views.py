@@ -10,7 +10,7 @@ from customuser.models import MyCustomUser
 
 @login_required()
 def home(request):
-    items = Ticket.objects.order_by("-ticket_status")
+    items = Ticket.objects.order_by("ticket_status")
     return render(request, "home.html", {"data": items})
 
 @login_required
@@ -87,11 +87,12 @@ def ticket_edit_view(request, pk):
             data = form.cleaned_data
             print(data)
             ticket = Ticket.objects.get(pk=pk)
+            breakpoint()
             if data['ticket_status'] == "Invalid":
-                ticket.ticket_status==data['ticket_status']
+                ticket.ticket_status = data['ticket_status']
                 print(ticket.user_assigned)
-                # ticket.user_assigned = ticket.user_assigned.get_default()
-                # ticket.user_completed = ticket.user_completed.get_default()
+                ticket.user_assigned = None
+                ticket.user_completed = None
 
             else:
                 if data['title']:

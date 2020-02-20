@@ -5,10 +5,10 @@ class TicketAddForm(forms.Form):
     title = forms.CharField(max_length=25)
     description = forms.CharField(max_length=250)
     choices = [
-        ('New', 'New'),
-        ('In Progress', 'In Progress'),
-        ('Done', 'Done'),
-        ('Invalid', 'Invalid')
+        ('0', 'New'),
+        ('1', 'In Progress'),
+        ('2', 'Done'),
+        ('3', 'Invalid')
     ]
     ticket_status = forms.ChoiceField(
         choices=choices
