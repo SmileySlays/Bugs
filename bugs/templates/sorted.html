@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <button onclick="window.location.href='/home/';"> Home </button>
+<button onclick="window.location.href='/completed/{{ user.username }}';"> My Completed </button>
+<button onclick="window.location.href='/assigned/{{ user }}';"> My Assigned </button>
+    <title>My Title</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <h1 class="mt-2">Tickets</h1>
+          <hr class="border border-dark mt-0 mb-4">
+          {% block content %}
+            {% if user.is_authenticated %}
+            {% for ticket in tickets %}
+            <ul class="border border-dark rounded">
+            <h2 style="background-color: lavenderblush"> Username: {{ ticket.title}}</h1>
+            <p> Description: {{ ticket.description }}</p>
+            <p> Ticket Status: {{ ticket.ticket_status }}</p>
+            <p>User Filled: <a href="/user/{{ ticket.user_filled }}">{{ ticket.user_filled }}</a></p>
+            {% if ticket.user_assigned is not None %}
+            <p> User Assigned: <a href="/user/{{ ticket.user_assigned }}">{{ ticket.user_assigned }}</a></p>
+            {% else %}
+            <p> User Assigned: <a href="/user/{{ ticket.user_assigned }}">{{ ticket.user_assigned }}</a></p>
+            {% endif %}
+            {% if ticket.user_completed is not None %}
+            <p> User Completed: <a href="/user/{{ ticket.user_completed }}">{{ ticket.user_completed }}</a></p>
+            {% else %}
+            <p> User Completed: {{ ticket.user_completed }}</p>
+            {% endif %}
+            <button onclick="window.location.href='/ticketedit/{{ ticket.pk }}';"> Edit</button>
+            <button onclick="window.location.href='/complete/{{ ticket.pk }}';"> Comeplete </button>
+            </ul>
+            <p></p>
+            <p></p>
+            {% endfor %}
+            {% endif %} 
+           {% endblock %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
