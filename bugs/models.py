@@ -19,5 +19,5 @@ class Ticket(models.Model):
     )
     #unique is false so users can have multiple tickets at once
     user_filled = models.ForeignKey(MyCustomUser, unique=False, on_delete=models.CASCADE, related_name='user_filled')
-    user_assigned = models.ForeignKey(MyCustomUser, unique=False, on_delete=models.CASCADE, related_name='user_assigned', null=True, blank=True)
-    user_completed = models.ForeignKey(MyCustomUser, unique=False, on_delete=models.CASCADE, related_name='user_completed', null=True, blank=True)
+    user_assigned = models.ForeignKey(MyCustomUser, unique=False, on_delete=models.CASCADE, related_name='user_assigned', null=True, blank=True, default=None)
+    user_completed = models.ForeignKey(MyCustomUser, unique=False, on_delete=models.CASCADE, related_name='user_completed', null=True, blank=True, default=None)

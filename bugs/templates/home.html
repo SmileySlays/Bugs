@@ -22,17 +22,6 @@
                 <p> {{ ticket.created_date }} </p>
             <p> Description: {{ ticket.description }}</p>
             <p> Ticket Status: {{ ticket.ticket_status }}</p>
-            <p>User Filled: <a href="/user/{{ ticket.user_filled }}">{{ ticket.user_filled }}</a></p>
-            {% if ticket.user_assigned is not None %}
-            <p> User Assigned: <a href="/user/{{ ticket.user_assigned }}">{{ ticket.user_assigned }}</a></p>
-            {% else %}
-            <p> User Assigned: <a href="/user/{{ ticket.user_assigned }}">{{ ticket.user_assigned }}</a></p>
-            {% endif %}
-            {% if ticket.user_completed is not None %}
-            <p> User Completed: <a href="/user/{{ ticket.user_completed }}">{{ ticket.user_completed }}</a></p>
-            {% else %}
-            <p> User Completed: {{ ticket.user_completed }}</p>
-            {% endif %}
             <button onclick="window.location.href='/ticketedit/{{ ticket.pk }}';"> Edit</button>
             <button onclick="window.location.href='/complete/{{ ticket.pk }}';"> Comeplete </button>
             <button onclick="window.location.href='/details/{{ ticket.pk }}';"> View Details </button>

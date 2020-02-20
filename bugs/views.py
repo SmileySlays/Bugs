@@ -89,8 +89,9 @@ def ticket_edit_view(request, pk):
             ticket = Ticket.objects.get(pk=pk)
             if data['ticket_status'] == "Invalid":
                 ticket.ticket_status==data['ticket_status']
-                ticket.user_assigned = "NULL"
-                ticket.user_completed = "NULL"
+                print(ticket.user_assigned)
+                # ticket.user_assigned = ticket.user_assigned.get_default()
+                # ticket.user_completed = ticket.user_completed.get_default()
 
             else:
                 if data['title']:
